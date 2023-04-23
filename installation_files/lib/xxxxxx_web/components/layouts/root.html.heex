@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" style="scrollbar-gutter: stable;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+
+    <.live_title>
+      <%= assigns[:page_title] || "Taskero" %>
+    </.live_title>
+
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+
+  <body class="bg-white antialiased">
+    <div class="min-h-screen flex flex-col">
+      <header class="sticky top-0 bg-black border-4 border-gray text-white h-48 pl-10 pt-5 shadow-black border-red-500">
+        Sticky header
+        <div>
+          <ul class="gap-4 px-0 sm:px-6 lg:px-8 justify-end content-end flex-row flex">
+            <%= if @current_user do %>
+              <li>
+                <%= @current_user.email %>
+              </li>
+              <li>
+                <.link href={~p"/users/log-out"} method="delete">
+                  Logout
+                </.link>
+              </li>
+            <% else %>
+              <li>
+                <.link href={~p"/users/log-in"}>
+                  Login
+                </.link>
+              </li>
+              <li>
+                <.link href={~p"/users/register"}>
+                  Register
+                </.link>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </header>
+
+      <main class="flex-1 px-4 py-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl">
+          <%= @inner_content %>
+        </div>
+      </main>
+
+      <footer class="h-24 p-10 bg-teal-500 border-2 border-blue-900">
+        Footer
+      </footer>
+    </div>
+  </body>
+</html>
