@@ -8,8 +8,6 @@ defmodule Palette do
       import Palette.Components.{
         ActionLink,
         Alert,
-        AppHeader,
-        AppHeaderWrapper,
         Avatars.Avatar,
         Avatars.InitialAvatar,
         Badges.Badge,
