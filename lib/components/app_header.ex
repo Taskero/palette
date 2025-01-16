@@ -53,7 +53,7 @@ defmodule Palette.Components.AppHeader do
           </button>
           <!-- Main Searchbar -->
           <%= if @search do %>
-            <%= live_component(Palette.Components.Live.GlobalSearch,
+            <%= live_render(Palette.Components.Live.GlobalSearch,
               id: "global-search",
               search_module: @search_module
             ) %>
